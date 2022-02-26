@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        UPDATE HOLDINGS
+    </title>
+    <script>
+        function validateForm() {
+            let symbol = document.forms["update-holdings"]["symbol"].value.trim();
+            if (symbol == "") {
+                alert("Name must be filled out.");
+                return false;
+            }
+
+            let quantity = document.forms["update-holdings"]["quantity"].value.trim();
+            if (quantity == "") {
+                alert("Quantity must be filled.");
+                return false;
+            }
+
+            let price = document.forms["update-holdings"]["price"].value.trim();
+            if (price == "") {
+                alert("Price must be filled.");
+                return false;
+            }
+
+            let date = document.forms["update-holdings"]["date"].value.trim();
+            if (date == "") {
+                alert("Date must be filled.");
+                return false;
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-image: url('https://thumbs.dreamstime.com/z/stock-market-background-forex-trading-business-graph-chart-financial-investment-concept-presentation-your-design-economy-173049764.jpg')">
+    </bodystyle>
+    <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> 
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/stock">Add Holding</a>
+              </li>
+        </ul>
+        </div>      
+        <a href="/logout"> <button class="btn btn-outline-success">Logout</button></a>
+        
+      </div>
+    </div>
+  </nav>
+    <h1 style="color:black"><i>UPDATE HOLDINGS</i></h1>
+    <hr />
+    
+    
+    <form method="POST" action="/update-stock" name="update-holdings" onsubmit="return validateForm()">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Stock Symbol</label>
+            <div class="col-sm-10">
+                <input type="text" name = 'symbol' class="form-control" id="inlineFormInputName2" value="{{ holding[0] }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPassword3" name='quantity' value="{{ holding[1] }}">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPassword3" name='price' value="{{ holding[2] }}">
+            </div>
+        </div>
+        <!-- Date -->
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="inputPassword3" name='date' value="{{ holding[3] }}">
+            </div>
+        </div>
+        <!--- NOTES --->
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Notes</label>
+            <div class="col-sm-10">
+                <textarea name="notes">{{ holding[4] }}</textarea>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
